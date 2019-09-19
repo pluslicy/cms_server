@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.apps.cms.dao.extend.CommentVMMapper">
+	<select id="selectAll" resultMap="CommentVMResultMap">
+ 		select * 
+ 		from cms_comment
+ 		where 1=1
+ 		<if test="keywords != null">
+		    AND content like #{keywords}
+		</if>
+		limit ${page*pageSize},${pageSize}
+ 	</select>
+ 	<select id="count" resultType="long">
+ 		select count(*) 
+ 		from cms_comment
+ 		where 1=1
+ 		<if test="keywords != null">
+		    AND content like #{keywords}
+		</if>
+ 	</select>
+ 	
+ 	<select id="selectCommentByArticleId" resultType="com.briup.apps.cms.bean.Comment">
+ 		select *
+ 		from cms_comment
+ 		where article_id = #{id}
+ 	</select>
+ 	
+ 	
+ 	
+ 	<!-- 定义结果集 -->
+ 	<resultMap type="com.briup.apps.cms.bean.extend.CommentVM" id="CommentVMResultMap">
+ 		 <id column="id" jdbcType="BIGINT" property="id" />
+	    <result column="commentTime" jdbcType="VARCHAR" property="commenttime" />
+	    <result column="status" jdbcType="VARCHAR" property="status" />
+	    <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
+	    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+	    <!-- <association 
+ 			column="article_id" 
+ 			property="article"
+ 			select="com.briup.apps.cms.dao.ArticleMapper.selectByPrimaryKey">
+ 		</association> -->
+ 	</resultMap>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

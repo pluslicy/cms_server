@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2020-02-11 10:39:31
+Date: 2020-02-17 20:29:05
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -39,19 +39,19 @@ CREATE TABLE `cms_article` (
   KEY `fk_article_category_id_idx` (`category_id`),
   CONSTRAINT `fk_article_category_id` FOREIGN KEY (`category_id`) REFERENCES `cms_category` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_article_user_id` FOREIGN KEY (`user_id`) REFERENCES `cms_user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=157 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=178 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cms_article
 -- ----------------------------
-INSERT INTO `cms_article` VALUES ('1', '测试', null, '这是一篇好文章', null, '2018-09-18 21:49:35', '8', null, null, null, null, '1', null, null);
-INSERT INTO `cms_article` VALUES ('143', 'sdcsc', '1', 'sdcsc', 'sdc', '2018-09-26 15:00:20', '0', '未审核', null, null, null, null, null, null);
-INSERT INTO `cms_article` VALUES ('149', 'test', '1', 'test', '\'\'', '2018-09-26 15:12:09', '0', '未审核', null, null, null, null, null, null);
-INSERT INTO `cms_article` VALUES ('152', '123', '123', null, null, '2020-02-11 10:35:31', '0', '未审核', '0', '0', null, null, null, null);
-INSERT INTO `cms_article` VALUES ('153', '555', '123', null, null, '2020-02-11 10:37:15', '0', '未审核', '0', '0', null, null, null, null);
-INSERT INTO `cms_article` VALUES ('154', '这是一篇测试文章', '123', null, null, '2020-02-11 10:37:26', '0', '未审核', '0', '0', null, null, null, null);
-INSERT INTO `cms_article` VALUES ('155', '这是一篇测试文章', '123', null, null, '2020-02-11 10:37:28', '0', '未审核', '0', '0', null, null, null, null);
-INSERT INTO `cms_article` VALUES ('156', 'test01', 'style-one', null, null, '2020-02-11 10:38:15', '0', '未审核', '0', '0', null, null, null, null);
+INSERT INTO `cms_article` VALUES ('1', '测试', 'style-one', '这是一篇好文章', null, '2018-09-18 21:49:35', '8', '已审核', '1', '1', '7', '1', '1', '1');
+INSERT INTO `cms_article` VALUES ('170', 'test01', 'style-one', '111', null, '2020-02-13 16:01:18', '0', '未审核', '0', '0', null, '1', null, null);
+INSERT INTO `cms_article` VALUES ('171', 'test02', 'style-one', '222', null, '2020-02-13 16:01:28', '0', '未审核', '0', '0', null, '165', null, null);
+INSERT INTO `cms_article` VALUES ('172', 'test03', 'style-one', '333', null, '2020-02-13 16:01:38', '0', '未审核', '0', '0', null, '166', null, null);
+INSERT INTO `cms_article` VALUES ('173', 'test04', 'style-two', '444', null, '2020-02-13 16:01:49', '0', '未审核', '0', '0', null, '1', null, null);
+INSERT INTO `cms_article` VALUES ('175', 'test05', 'style-one', '555', null, '2020-02-13 16:02:40', '0', '未审核', '0', '0', null, '1', null, null);
+INSERT INTO `cms_article` VALUES ('176', 'test06', 'style-one', '666', null, '2020-02-13 16:02:53', '0', '未审核', '0', '0', null, '165', null, null);
+INSERT INTO `cms_article` VALUES ('177', 'test04(改)...', 'style-two', '444', null, null, null, null, null, null, null, '167', null, null);
 
 -- ----------------------------
 -- Table structure for cms_article_file
@@ -71,6 +71,7 @@ CREATE TABLE `cms_article_file` (
 -- ----------------------------
 -- Records of cms_article_file
 -- ----------------------------
+INSERT INTO `cms_article_file` VALUES ('1', '170', 'M00/00/02/rBApFluq-S2AYD1_AAgXWvl26mg018.jpg');
 
 -- ----------------------------
 -- Table structure for cms_category
@@ -85,16 +86,16 @@ CREATE TABLE `cms_category` (
   PRIMARY KEY (`id`),
   KEY `fk_category_category_id_idx` (`parent_id`),
   CONSTRAINT `fk_category_category_id` FOREIGN KEY (`parent_id`) REFERENCES `cms_category` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=173 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cms_category
 -- ----------------------------
-INSERT INTO `cms_category` VALUES ('1', '推荐', '点击量高的文章', null, null);
-INSERT INTO `cms_category` VALUES ('165', '美术', '美术是一门课程', '1', null);
+INSERT INTO `cms_category` VALUES ('1', '推荐', '点击量高的文章', '1', '165');
+INSERT INTO `cms_category` VALUES ('165', '美术', '美术是一门课程', '1', '1');
 INSERT INTO `cms_category` VALUES ('166', '123', '321', '1', '1');
 INSERT INTO `cms_category` VALUES ('167', 'www', '122', '1', '165');
-INSERT INTO `cms_category` VALUES ('171', 'www', '122', null, '1');
+INSERT INTO `cms_category` VALUES ('172', '111', '11', '1', '165');
 
 -- ----------------------------
 -- Table structure for cms_comment
@@ -107,15 +108,16 @@ CREATE TABLE `cms_comment` (
   `status` varchar(45) DEFAULT NULL,
   `article_id` bigint(20) DEFAULT NULL,
   `customer_id` varchar(45) DEFAULT NULL,
+  `123` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_comment_article_id_idx` (`article_id`),
   CONSTRAINT `fk_comment_article_id` FOREIGN KEY (`article_id`) REFERENCES `cms_article` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cms_comment
 -- ----------------------------
-INSERT INTO `cms_comment` VALUES ('1', '这篇文章写得不错', '2018-09-19 11:21:25', '通过', '1', null);
+INSERT INTO `cms_comment` VALUES ('1', '这篇文章写得不错11', '2018-09-19 11:21:25', '通过', '171', '1', null);
 
 -- ----------------------------
 -- Table structure for cms_file
@@ -126,14 +128,17 @@ CREATE TABLE `cms_file` (
   `groupName` varchar(256) DEFAULT NULL,
   `uploadTime` varchar(45) DEFAULT NULL,
   `fileSize` bigint(20) DEFAULT NULL,
+  `fileName` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of cms_file
 -- ----------------------------
-INSERT INTO `cms_file` VALUES ('M00/00/01/rBApFluhsFCALgjqAADqH9LyZnY746.jpg', 'group1', '2018-09-19 10:11:28', null);
-INSERT INTO `cms_file` VALUES ('M00/00/02/rBApFluq-S2AYD1_AAgXWvl26mg018.jpg', 'group1', '2018-09-26 11:12:45', '530266');
+INSERT INTO `cms_file` VALUES ('M00/00/02/rBApFluq-S2AYD1_AAgXWvl26mg018.jpg', 'group1', '2018-09-26 11:12:45', '530266', '018.jpg');
+INSERT INTO `cms_file` VALUES ('M00/00/2D/rBAACV5KTQuAblhXAAAdqc_OKKk776.png', 'group1', '2020-02-17 16:21:30', '7593', '1581558576(1).png');
+INSERT INTO `cms_file` VALUES ('M00/00/2D/rBAACV5KU5qAT8P8AAGFXo9N_z4604.jpg', 'group1', '2020-02-17 16:49:30', '99678', 'app.jpg');
+INSERT INTO `cms_file` VALUES ('M00/00/2D/rBAACV5KUCOAZRBBAAAdqc_OKKk305.png', 'group1', '2020-02-17 16:34:43', '7593', '1581558576(1).png');
 
 -- ----------------------------
 -- Table structure for cms_roles

@@ -13,6 +13,8 @@ import com.briup.apps.cms.bean.Comment;
 import com.briup.apps.cms.bean.extend.CommentVM;
 import com.briup.apps.cms.vm.PageVM;
 
+import java.util.List;
+
 /**
  * ClassName:ICommentService <br/>
  * Function: TODO ADD FUNCTION. <br/>
@@ -33,5 +35,6 @@ public interface ICommentService {
 	void deleteById(long id) throws Exception;
 	
 	void batchDelete(long[] ids) throws Exception;
+
 }
 

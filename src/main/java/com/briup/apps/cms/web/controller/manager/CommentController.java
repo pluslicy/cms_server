@@ -24,6 +24,8 @@ import com.briup.apps.cms.vm.PageVM;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+import java.util.List;
+
 /**
  * ClassName:CommentController <br/>
  * Function: TODO ADD FUNCTION. <br/>
@@ -48,7 +50,7 @@ public class CommentController {
 		PageVM<CommentVM> pageVM = commentService.queryAll(page, pageSize, keywords);
 		return MsgResponse.success("success", pageVM);
 	}
-	
+
 	@ApiOperation(value="保存或更新评论",notes="如果参数中id不为空表示保存，否则表示更新")
 	@PostMapping(value="saveOrUpdateComment")
 	public MsgResponse saveOrUpdateComment(Comment comment) {
@@ -96,8 +98,5 @@ public class CommentController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	
-	
-	
 }
 

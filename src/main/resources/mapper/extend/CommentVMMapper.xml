@@ -10,6 +10,7 @@
 		</if>
 		limit ${page*pageSize},${pageSize}
  	</select>
+
  	<select id="count" resultType="long">
  		select count(*) 
  		from cms_comment
@@ -34,11 +35,11 @@
 	    <result column="status" jdbcType="VARCHAR" property="status" />
 	    <result column="customer_id" jdbcType="VARCHAR" property="customerId" />
 	    <result column="content" jdbcType="LONGVARCHAR" property="content" />
-	    <!-- <association 
- 			column="article_id" 
+	   <association
+ 			column="article_id"
  			property="article"
  			select="com.briup.apps.cms.dao.ArticleMapper.selectByPrimaryKey">
- 		</association> -->
+ 		</association>
  	</resultMap>
 </mapper>
 

@@ -55,7 +55,7 @@
 	    <result column="thumbUp" jdbcType="INTEGER" property="thumbup" />
     		<result column="thumbDown" jdbcType="INTEGER" property="thumbdown" />
 	  
-	    <result column="user_id" jdbcType="INTEGER" property="userId" />
+	    <result column="user_id" jdbcType="INTEGER" property="user_id" />
 	    
 	   	<association 
  			column="music" 

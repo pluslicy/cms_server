@@ -21,11 +21,12 @@ package com.briup.apps.cms.dao.extend;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.briup.apps.cms.bean.Comment;
 import com.briup.apps.cms.bean.extend.CommentVM;
-
+@Mapper
 public interface CommentVMMapper {
 	List<CommentVM> selectAll(
 			@Param("page") int page,

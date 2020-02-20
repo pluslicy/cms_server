@@ -41,8 +41,6 @@ public class ArticleController {
 	@Autowired
 	private IArticleService articleService;
 	
-	
-	
 	@ApiOperation(value="批量删除")
 	@PostMapping(value="batchDeleteArticle")
 	public MsgResponse batchDeleteArticle(long[] ids) {

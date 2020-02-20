@@ -13,6 +13,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import com.briup.apps.cms.bean.CommentExample;
+import com.briup.apps.cms.bean.UserExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,7 +49,7 @@ public class CommentServiceImpl implements ICommentService {
 		}
 		List<CommentVM> list = commentVMMapper.selectAll(page, pageSize, keywords);
 		long total = commentVMMapper.count(keywords);
-		
+
 		PageVM<CommentVM> pageVM = new PageVM<>(page, pageSize, total, list);
 		return pageVM;
 	}

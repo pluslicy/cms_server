@@ -78,7 +78,7 @@ public class FileController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	@ApiOperation(value="视频音频上传",notes="文件大小限制为80M,文件服务器地址：http://39.108.81.60:8888，图片地址为 服务器地址/groupName/fileName")
+	@ApiOperation(value="视频音频上传",notes="文件大小限制为80M,文件服务器地址：http://134.175.154.93:8888，图片地址为 服务器地址/groupName/fileName")
 	@PostMapping("uploadMedia")
 	public MsgResponse uploadMedia(@RequestParam("file") MultipartFile file,HttpServletRequest req) {
 		try {
@@ -110,7 +110,7 @@ public class FileController {
 		}
 	}
 	
-	@ApiOperation(value="文件上传",notes="文件大小限制为3M,文件服务器地址：http://39.108.81.60:8888，图片地址为 服务器地址/groupName/fileName")
+	@ApiOperation(value="文件上传",notes="文件大小限制为3M,文件服务器地址：http://134.175.154.93:8888，图片地址为 服务器地址/groupName/fileName eg:http://134.175.154.93:8888/group1/M00/00/2D/rBAACV5KTQuAblhXAAAdqc_OKKk776.png")
 	@PostMapping("upload")
 	public MsgResponse upload(@RequestParam("file") MultipartFile file,HttpServletRequest req) {
 		try {

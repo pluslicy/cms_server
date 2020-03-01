@@ -1,10 +1,10 @@
 package com.briup.apps.cms.dao.extend;
 
+import com.briup.apps.cms.bean.User;
+import com.briup.apps.cms.bean.extend.UserExtend;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
-import com.briup.apps.cms.bean.Role;
-import com.briup.apps.cms.bean.User;
+import org.omg.PortableInterceptor.USER_EXCEPTION;
 
 import java.util.List;
 
@@ -12,9 +12,11 @@ import java.util.List;
  * Created by sang on 2017/12/17.
  */
 @Mapper
-public interface UserMapper {
+public interface UserExtendMapper {
 
     User loadUserByUsername(@Param("username") String username);
+
+    UserExtend loadUserByUsernameExtend(@Param("username") String username);
 
     long reg(User user);
 
@@ -22,7 +24,7 @@ public interface UserMapper {
 
     List<User> getUserByNickname(@Param("nickname") String nickname);
 
-    List<Role> getAllRole();
+//    List<Role> getAllRole();
 
     int updateUserEnabled(@Param("enabled") Boolean enabled, @Param("uid") Long uid);
 

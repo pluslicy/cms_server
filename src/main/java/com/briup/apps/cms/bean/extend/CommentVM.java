@@ -14,12 +14,13 @@ package com.briup.apps.cms.bean.extend;
  * Reason:	 TODO ADD REASON. <br/>
  * Date:     2018年9月19日 上午10:33:04 <br/>
  * @author   lichunyu
- * @version  
+ * @version
  * @since    JDK 1.6
- * @see 	 
+ * @see
  */
 
 import com.briup.apps.cms.bean.Article;
+import com.briup.apps.cms.bean.Comment;
 
 public class CommentVM {
 	private Long id;
@@ -27,7 +28,7 @@ public class CommentVM {
 	private String status;
 	private String content;
 	private String customerId;
-	
+
 	private Article article;
 
 	public Long getId() {
@@ -37,6 +38,8 @@ public class CommentVM {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+
 
 	public String getCommenttime() {
 		return commenttime;

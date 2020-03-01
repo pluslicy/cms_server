@@ -2,19 +2,29 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.briup.apps.cms.dao.extend.UserMapper">
+<mapper namespace="com.briup.apps.cms.dao.extend.UserExtendMapper">
     <select id="loadUserByUsername" resultType="com.briup.apps.cms.bean.User">
         SELECT * FROM cms_user WHERE username=#{username}
     </select>
+    <select id="loadUserByUsernameExtend" resultType="com.briup.apps.cms.bean.extend.UserExtend">
+        SELECT * FROM cms_user WHERE username=#{username}
+    </select>
     <insert id="reg" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO cms_user set username=#{username},password=#{password},nickname=#{nickname}
+     insert into cms_user (id, username, nickname,
+      password, enabled, email,
+      userface, regTime, role
+      )
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR},
+      #{password,jdbcType=VARCHAR}, #{enabled,jdbcType=BIT}, #{email,jdbcType=VARCHAR},
+      #{userface,jdbcType=VARCHAR}, #{regtime,jdbcType=TIMESTAMP}, #{role,jdbcType=VARCHAR}
+      )
     </insert>
     <update id="updateUserEmail">
         UPDATE cms_user set email=#{email} WHERE id=#{id}
     </update>
     <select id="getUserByNickname" resultMap="BaseResultMap">
-        SELECT u.*,r.`id` AS rid,r.`name` AS rname 
-        FROM cms_user u,cms_roles r,cms_roles_user ru 
+        SELECT u.*,r.`id` AS rid,r.`name` AS rname
+        FROM cms_user u,cms_roles r,cms_roles_user ru
         WHERE u.`id`=ru.`uid` AND
         r.`id`=ru.`rid` AND u.`id` NOT IN(SELECT u.`id` FROM user u,roles_user ru WHERE u.`id`=ru.`uid` AND ru.`rid`=1)
         <choose>

@@ -46,7 +46,7 @@ import net.sf.json.JSONObject;
  * Function: TODO ADD FUNCTION. <br/>
  * Reason: TODO ADD REASON. <br/>
  * Date: 2018年9月17日 上午10:23:44 <br/>
- * 
+ *
  * @author lichunyu
  * @version
  * @since JDK 1.6
@@ -57,7 +57,7 @@ import net.sf.json.JSONObject;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	UserService userService;
-	
+
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userService).passwordEncoder(new PasswordEncoder() {
@@ -80,17 +80,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		});
 	}
 
-	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		
+
 		http
 		.authorizeRequests()
 		.anyRequest()
 		.permitAll()
 		.and().csrf().disable();
-		
-		
+
+
 		/*
 		http.authorizeRequests()
 		.antMatchers("/manager/**").authenticated()
@@ -105,9 +105,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					throws IOException, ServletException {
 				httpServletResponse.setContentType("application/json;charset=utf-8");
 				PrintWriter out = httpServletResponse.getWriter();
-				UserDetails userDetails 
+				UserDetails userDetails
 					= (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-				
+
 				MsgResponse msg = MsgResponse.success("登录成功", userDetails);
 				out.write(JSONObject.fromObject(msg).toString());
 				//回显用户信息
@@ -134,10 +134,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.and().logout().permitAll()
 		.and().csrf().disable().exceptionHandling()
 		.accessDeniedHandler(getAccessDeniedHandler())
-		.and().cors();	
+		.and().cors();
 		*/
 	}
-	
+
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/blogimg/**", "/index.html", "/static/**",

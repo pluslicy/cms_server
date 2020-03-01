@@ -13,8 +13,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import com.briup.apps.cms.bean.CommentExample;
-import com.briup.apps.cms.bean.UserExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -80,6 +78,11 @@ public class CommentServiceImpl implements ICommentService {
 		} else {
 			throw new Exception("参数异常");
 		}
+	}
+
+	@Override
+	public List<Comment> findcommentByartileId(int id) {
+		return commentVMMapper.selectCommentByArticleId(id);
 	}
 
 	@Override

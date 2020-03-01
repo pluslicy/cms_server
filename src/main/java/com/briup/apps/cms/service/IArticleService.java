@@ -37,7 +37,7 @@ public interface IArticleService {
 	
 	List<ArticleVM> queryArticleNoPage(Long categoryId, String keywords);
 		
-	PageVM<ArticleVM> queryArticle(int page, int pageSize,Long categoryId, String keywords);
+	PageVM<ArticleVM> queryArticle(int page, int pageSize,Long categoryId, String keywords,String beginTime,String endTime);
 
 	ArticleVM saveOrUpdate(ArticleWithBLOBs article,String[] fileIds) throws Exception;
 

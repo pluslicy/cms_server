@@ -68,12 +68,12 @@ public class ArticleServiceImpl implements IArticleService {
 	}
 	
 	@Override
-	public PageVM<ArticleVM> queryArticle(int page, int pageSize, Long categoryId,String keywords) {
+	public PageVM<ArticleVM> queryArticle(int page, int pageSize, Long categoryId,String keywords,String beginTime,String endTime) {
 		if(keywords!=null) {
 			keywords = "%"+keywords+"%";
 		}
-		List<ArticleVM> list = articleVMMapper.selectAll(page, pageSize, categoryId, keywords);
-		long total = articleVMMapper.count(page, pageSize, categoryId, keywords);
+		List<ArticleVM> list = articleVMMapper.selectAll(page, pageSize, categoryId, keywords,beginTime,endTime);
+		long total = articleVMMapper.count(page, pageSize, categoryId, keywords,beginTime,endTime);
 		PageVM<ArticleVM> pageVM = new PageVM<>(page, pageSize, total, list);
 		return pageVM;
 	}
@@ -191,7 +191,7 @@ public class ArticleServiceImpl implements IArticleService {
 	public void checkArticle(long id, String status) throws Exception {
 		Article article = articleMapper.selectByPrimaryKey(id);
 		if(article!=null) {
-			if(article.getStatus() == "未审核") {
+			if(article.getStatus().equals("未审核")) {
 				article.setStatus(status);
 				articleMapper.updateByPrimaryKey(article);
 			} else {

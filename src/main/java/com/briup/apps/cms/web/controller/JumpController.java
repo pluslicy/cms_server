@@ -27,7 +27,7 @@ import io.swagger.annotations.Api;
  */
 @Api(description="跳转功能")
 @Controller
-@RequestMapping("/jump")
+//@RequestMapping("/jump")
 public class JumpController {
 	@GetMapping("toIndex")
 	public String toIndex() {

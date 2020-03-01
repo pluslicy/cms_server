@@ -51,6 +51,12 @@ public class CommentController {
 		return MsgResponse.success("success", pageVM);
 	}
 
+	@ApiOperation(value="根据文章id查询评论")
+	@GetMapping(value="findCommentByArticleId")
+	public MsgResponse findCommentByArticleId(int id) {
+		return MsgResponse.success("success", commentService.findcommentByartileId(id));
+	}
+
 	@ApiOperation(value="保存或更新评论",notes="如果参数中id不为空表示保存，否则表示更新")
 	@PostMapping(value="saveOrUpdateComment")
 	public MsgResponse saveOrUpdateComment(Comment comment) {

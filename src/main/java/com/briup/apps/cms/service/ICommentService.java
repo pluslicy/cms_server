@@ -26,6 +26,8 @@ import java.util.List;
  * @see 	 
  */
 public interface ICommentService {
+	List<Comment> findcommentByartileId(int id);
+
 	void checkComment(long id,String status) throws Exception;
 	
 	PageVM<CommentVM> queryAll(int page,int pageSize,String keywords);

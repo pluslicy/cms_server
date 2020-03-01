@@ -1,5 +1,6 @@
 package com.baidu.ai.aip.utils;
 
+import com.zhenzi.sms.ZhenziSmsClient;
 import org.json.JSONObject;
 
 import java.io.*;
@@ -9,6 +10,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 /**
  * 身份证识别
@@ -209,6 +211,72 @@ public class IdentificationUtil {
         return map;
     }
 
+//    /**
+//     * @return java.util.HashMap<java.lang.String, java.lang.String>
+//     * @Author CC
+//     * @Description 将SMS接口返回的信息转化为合适的格式
+//     * @Date 2020/2/23 14:44
+//     * @Param [jsonResult]
+//     **/
+//
+//    public static HashMap<String, String> getSmsByJson(String jsonResult) {
+//        HashMap map = new HashMap<String, String>();
+//        try {
+//            JSONObject jsonObject = new JSONObject(jsonResult);
+//            JSONObject words_result = jsonObject.getJSONObject("words_result");
+//            Iterator<String> it = words_result.keys();
+//            while (it.hasNext()) {
+//                String key = it.next();
+//                JSONObject result = words_result.getJSONObject(key);
+//                String value = result.getString("words");
+//                switch (key) {
+//                    case "code":
+//                        map.put("code1", value);
+//                        break;
+//                    case "data":
+//                        map.put("data1", value);
+//                        break;
+//                }
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return map;
+//    }
+//
+//    /**
+//     * @return java.util.HashMap<java.lang.String, java.lang.String>
+//     * @Author CC
+//     * @Description 将SMS接口返回的套餐剩余数量信息转化为合适的格式
+//     * @Date 2020/2/23 14:36
+//     * @Param [jsonResult]
+//     **/
+//
+//    public static HashMap<String, String> getSmsNumByJson(String jsonResult) {
+//        HashMap map = new HashMap<String, String>();
+//        try {
+//            JSONObject jsonObject = new JSONObject(jsonResult);
+//            JSONObject words_result = jsonObject.getJSONObject("words_result");
+//            Iterator<String> it = words_result.keys();
+//            while (it.hasNext()) {
+//                String key = it.next();
+//                JSONObject result = words_result.getJSONObject(key);
+//                String value = result.getString("words");
+//                switch (key) {
+//                    case "code":
+//                        map.put("code", value);
+//                        break;
+//                    case "data":
+//                        map.put("balance", value);
+//                        break;
+//                }
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return map;
+//    }
+
 
     public static void main(String[] args) {
         //  此代码可直接获取token
@@ -217,5 +285,17 @@ public class IdentificationUtil {
         //  测试图片
         //  正面：https://ai.bdstatic.com/file/D348C98B677149C8B95909CFA204BA1C
         //  反面：https://ai.bdstatic.com/file/75537E3E7EE8446EBDCB35B5CEDEB9B6
+
+        //  短信验证码发送
+
+        ZhenziSmsClient client = new ZhenziSmsClient("https://sms_developer.zhenzikj.com", "104584", "aca1366a-d551-4e8a-80fa-1292cf4fd6b6");
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("message", "验证码为: 112356");
+        params.put("number", "15047057120");
+        try {
+            String result = client.send(params);
+            System.out.println(result);
+        } catch (Exception e) {
+        }
     }
 }

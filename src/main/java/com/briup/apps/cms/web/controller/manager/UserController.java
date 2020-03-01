@@ -84,10 +84,9 @@ public class UserController {
     }
 
     @ApiOperation(value = "保存或更新用户信息", notes = "如果参数中id不为空表示保存，否则表示更新")
-    @PostMapping(value = "saveOrUpdateUser")
+//    @PostMapping(value = "saveOrUpdateUser")
     public MsgResponse saveOrUpdateUser(User user) {
         try {
-
             cmsUserService.saveOrUpdate(user);
             return MsgResponse.success("success", user);
         } catch (Exception e) {

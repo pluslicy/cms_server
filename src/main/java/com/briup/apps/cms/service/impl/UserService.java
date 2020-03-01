@@ -81,8 +81,11 @@ public class UserService implements UserDetailsService {
         } else {
             // 修改用户
             if (user.getUsername().equals(userMapper.selectByPrimaryKey(user.getId()).getUsername()) || loadUserByUsername == null) {
-                // 插入用户,插入之前先对密码进行加密
-                user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
+                if (!user.getPassword().equals(userMapper.selectByPrimaryKey(user.getId()).getPassword())) {
+                    //  如果密码改变则再次加密
+                    user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
+                }
+                user.setRegtime(userMapper.selectByPrimaryKey(user.getId()).getRegtime());
                 userMapper.updateByPrimaryKey(user);
                 return "更改信息成功";
             } else {

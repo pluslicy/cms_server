@@ -9,8 +9,10 @@
 
 package com.briup.apps.cms.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
+import com.briup.apps.cms.bean.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,7 +46,13 @@ public class CategoryServiceImpl implements ICategoryService {
 		List<CategoryVM> list = categoryVMMapper.selectAll();
 		return list;
 	}
-	
+
+	@Override
+	public CategoryVM querryCategoryByname(String name) {
+		CategoryVM category = categoryVMMapper.loadUserByUsername(name);
+		return category;
+	}
+
 	@Override
 	public List<Category> queryAll() {
 		CategoryExample example = new CategoryExample();
@@ -53,12 +61,25 @@ public class CategoryServiceImpl implements ICategoryService {
 	}
 
 	@Override
-	public void saveOrUpdate(Category category) throws Exception {
-		if(category.getId() == null) {
-			categoryMapper.insert(category);
-		} else {
-			categoryMapper.updateByPrimaryKey(category);
-		}
+	public String saveOrUpdate(Category category) throws Exception {
+		CategoryVM loadUserByUsername = categoryVMMapper.loadUserByUsername(category.getName());
+			if (category.getId() == null) {
+				// 注册用户
+				if (loadUserByUsername != null) {
+					return "该栏目名已存在，请换一个";
+				} else {
+				    categoryMapper.insert(category);
+					return "添加成功";
+				}
+			} else {
+				// 修改用户
+				if (category.getName().equals(categoryMapper.selectByPrimaryKey(category.getId()).getName()) || loadUserByUsername == null) {
+					categoryMapper.updateByPrimaryKey(category);
+					return "更改信息成功";
+				} else {
+					return "该栏目名已存在，请换一个";
+				}
+			}
 	}
 
 	@Override
@@ -66,7 +87,13 @@ public class CategoryServiceImpl implements ICategoryService {
 		categoryMapper.deleteByPrimaryKey(id);
 	}
 
-	@Override
+    @Override
+    public void deleteByName(String name) throws Exception {
+        CategoryVM category = categoryVMMapper.loadUserByUsername(name);
+        categoryMapper.deleteByPrimaryKey(category.getId());
+    }
+
+    @Override
 	public void batchDelete(long[] ids) throws Exception {
 		if(ids != null && ids.length>0) {
 			for(long id : ids) {

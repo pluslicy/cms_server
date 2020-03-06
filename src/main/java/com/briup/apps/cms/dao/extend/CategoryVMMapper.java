@@ -25,5 +25,6 @@ import com.briup.apps.cms.bean.extend.CategoryVM;
 
 public interface CategoryVMMapper {
 	List<CategoryVM> selectAll() ;
+	CategoryVM loadUserByUsername(String name);
 }
 

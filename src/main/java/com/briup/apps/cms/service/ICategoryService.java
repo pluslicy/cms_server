@@ -28,15 +28,19 @@ public interface ICategoryService {
 	long countAllCategory() ;
 	
 	List<CategoryVM> queryAllCategoryVM();
-	
+
+	CategoryVM querryCategoryByname(String name);
+
 	List<Category> queryAll();
 	
 	List<Category> queryCategoryByParentId(Long id);
-	
-	void saveOrUpdate(Category category) throws Exception;
+
+	String saveOrUpdate(Category category) throws Exception;
 	
 	void deleteById(long id) throws Exception;
-	
+
+	void deleteByName(String name) throws Exception;
+
 	void batchDelete(long[] ids) throws Exception;
 }
 

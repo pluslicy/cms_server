@@ -48,9 +48,9 @@ public class ArticleVM {
 
 	private Integer thumbdown;
 	
-	private CMSFile music;
+	private String music;
 
-	private CMSFile video;
+	private String video;
 
 	private User author;
 
@@ -140,6 +140,22 @@ public class ArticleVM {
 		this.comments = comments;
 	}
 
+	public String getMusic() {
+		return music;
+	}
+
+	public void setMusic(String music) {
+		this.music = music;
+	}
+
+	public String getVideo() {
+		return video;
+	}
+
+	public void setVideo(String video) {
+		this.video = video;
+	}
+
 	public String getSource() {
 		return source;
 	}
@@ -171,21 +187,21 @@ public class ArticleVM {
 	public void setThumbdown(Integer thumbdown) {
 		this.thumbdown = thumbdown;
 	}
-
-	public CMSFile getMusic() {
-		return music;
-	}
-
-	public void setMusic(CMSFile music) {
-		this.music = music;
-	}
-
-	public CMSFile getVideo() {
-		return video;
-	}
-
-	public void setVideo(CMSFile video) {
-		this.video = video;
-	}
+//
+//	public CMSFile getMusic() {
+//		return music;
+//	}
+//
+//	public void setMusic(CMSFile music) {
+//		this.music = music;
+//	}
+//
+//	public CMSFile getVideo() {
+//		return video;
+//	}
+//
+//	public void setVideo(CMSFile video) {
+//		this.video = video;
+//	}
 
 }

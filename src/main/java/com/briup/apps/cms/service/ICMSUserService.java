@@ -34,6 +34,8 @@ public interface ICMSUserService {
 
     User findUserByUsername(String username) throws Exception;
 
+    User findUserById(int id) throws Exception;
+
     void saveOrUpdate(User user) throws Exception;
 
     void changeStatus(int id, boolean status) throws Exception;

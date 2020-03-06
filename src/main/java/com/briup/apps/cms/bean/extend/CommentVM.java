@@ -21,6 +21,7 @@ package com.briup.apps.cms.bean.extend;
 
 import com.briup.apps.cms.bean.Article;
 import com.briup.apps.cms.bean.Comment;
+import com.briup.apps.cms.bean.User;
 
 public class CommentVM {
 	private Long id;
@@ -30,6 +31,7 @@ public class CommentVM {
 	private String customerId;
 
 	private Article article;
+	private User customer;
 
 	public Long getId() {
 		return id;
@@ -81,4 +83,11 @@ public class CommentVM {
 		this.article = article;
 	}
 
+	public User getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(User customer) {
+		this.customer = customer;
+	}
 }

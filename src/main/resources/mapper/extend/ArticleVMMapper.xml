@@ -73,16 +73,16 @@
                 select="com.briup.apps.cms.dao.UserMapper.selectByPrimaryKey">
         </association>
 
-        <association
-                column="music"
-                property="music"
-                select="com.briup.apps.cms.dao.CMSFileMapper.selectByPrimaryKey">
-        </association>
-        <association
-                column="video"
-                property="video"
-                select="com.briup.apps.cms.dao.CMSFileMapper.selectByPrimaryKey">
-        </association>
+<!--        <association-->
+<!--                column="music"-->
+<!--                property="music"-->
+<!--                select="com.briup.apps.cms.dao.CMSFileMapper.selectByPrimaryKey">-->
+<!--        </association>-->
+<!--        <association-->
+<!--                column="video"-->
+<!--                property="video"-->
+<!--                select="com.briup.apps.cms.dao.CMSFileMapper.selectByPrimaryKey">-->
+<!--        </association>-->
 
         <association
                 column="category_id"

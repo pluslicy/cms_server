@@ -20,9 +20,11 @@
         </if>
     </select>
 
-    <select id="selectCommentByArticleId" resultType="com.briup.apps.cms.bean.Comment">
+<!--    <select id="selectCommentByArticleId" resultType="com.briup.apps.cms.bean.Comment">-->
+    <select id="selectCommentByArticleId" resultMap="CommentVMResultMapNotArticle">
  		select
- 		id,      commenttime,      status,     article_id as  articleId, 		customer_id as customerId,      content
+<!--  		id,commenttime,status,article_id as  articleId,customer_id as customerId,content-->
+ 		*
  		from cms_comment
  		where article_id = #{id}
  	</select>
@@ -34,7 +36,6 @@
         <result column="customer_id" jdbcType="VARCHAR" property="customerId"/>
         <result column="article_id" jdbcType="BIGINT" property="articleId"/>
         <result column="content" jdbcType="LONGVARCHAR" property="content"/>
-
     </resultMap>
 
     <!-- 定义结果集 -->
@@ -42,12 +43,32 @@
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="commentTime" jdbcType="VARCHAR" property="commenttime"/>
         <result column="status" jdbcType="VARCHAR" property="status"/>
-        <result column="customer_id" jdbcType="VARCHAR" property="customerId"/>
+<!--        <result column="customer_id" jdbcType="VARCHAR" property="customerId"/>-->
         <result column="content" jdbcType="LONGVARCHAR" property="content"/>
         <association
                 column="article_id"
                 property="article"
                 select="com.briup.apps.cms.dao.ArticleMapper.selectByPrimaryKey">
+        </association>
+        <association
+                column="customer_id"
+                property="customer"
+                select="com.briup.apps.cms.dao.UserMapper.selectByPrimaryKey">
+        </association>
+    </resultMap>
+
+    <!-- 定义评论结果集 -->
+    <resultMap type="com.briup.apps.cms.bean.extend.CommentVM" id="CommentVMResultMapNotArticle">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="commentTime" jdbcType="VARCHAR" property="commenttime"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+        <!--        <result column="customer_id" jdbcType="VARCHAR" property="customerId"/>-->
+        <result column="content" jdbcType="LONGVARCHAR" property="content"/>
+
+        <association
+                column="customer_id"
+                property="customer"
+                select="com.briup.apps.cms.dao.UserMapper.selectByPrimaryKey">
         </association>
     </resultMap>
 </mapper>

@@ -76,6 +76,11 @@ public class CMSUserServiceImpl implements ICMSUserService {
     }
 
     @Override
+    public User findUserById(int id) throws Exception {
+        User user = userMapper.selectByPrimaryKey(id);
+        return user;
+    }
+    @Override
     public void saveOrUpdate(User user) throws Exception {
         if (user.getId() == null) {
             // user.setRegtime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));

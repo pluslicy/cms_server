@@ -71,6 +71,18 @@ public class UserController {
         }
     }
 
+    @ApiOperation(value = "通过用户id查询用户信息")
+    @GetMapping(value = "findUserById")
+    public MsgResponse findUserById(int id) {
+        try {
+            User user = cmsUserService.findUserById(id);
+            return MsgResponse.success("success", user);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return MsgResponse.error(e.getMessage());
+        }
+    }
+
     @ApiOperation(value = "通过用户名查询用户信息")
     @GetMapping(value = "findUserByUsername")
     public MsgResponse findUserByUsername(String username) {
@@ -83,17 +95,17 @@ public class UserController {
         }
     }
 
-    @ApiOperation(value = "保存或更新用户信息", notes = "如果参数中id不为空表示保存，否则表示更新")
-//    @PostMapping(value = "saveOrUpdateUser")
-    public MsgResponse saveOrUpdateUser(User user) {
-        try {
-            cmsUserService.saveOrUpdate(user);
-            return MsgResponse.success("success", user);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return MsgResponse.error(e.getMessage());
-        }
-    }
+//    @ApiOperation(value = "保存或更新用户信息", notes = "如果参数中id不为空表示保存，否则表示更新")
+//    @PostMapping(value = "saveOrUpdateUser")该接口已停用
+//    public MsgResponse saveOrUpdateUser(User user) {
+//        try {
+//            cmsUserService.saveOrUpdate(user);
+//            return MsgResponse.success("success", user);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return MsgResponse.error(e.getMessage());
+//        }
+//    }
 
     @ApiOperation(value = "修改用户状态", notes = "true表示开启，false表示关闭")
     @PostMapping(value = "changeStatus")

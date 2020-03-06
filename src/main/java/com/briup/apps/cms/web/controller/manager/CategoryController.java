@@ -11,6 +11,7 @@ package com.briup.apps.cms.web.controller.manager;
 
 import java.util.List;
 
+import com.briup.apps.cms.bean.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,8 +47,8 @@ public class CategoryController {
 	@PostMapping(value="saveOrUpdateCategory")
 	public MsgResponse saveOrUpdateCategory(Category category) {
 		try {
-			categoryService.saveOrUpdate(category);
-			return MsgResponse.success("操作成功", null);
+			String result = categoryService.saveOrUpdate(category);
+			return MsgResponse.success(result, category);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return MsgResponse.error(e.getMessage());
@@ -77,7 +78,29 @@ public class CategoryController {
 			return MsgResponse.error(e.getMessage());
 		}
 	}
-	
+	@ApiOperation(value = "通过栏目名查询栏目信息")
+	@GetMapping(value = "findCategoryByCategoryname")
+	public MsgResponse findCategoryByCategoryname(String name) {
+		try {
+			CategoryVM user = categoryService.querryCategoryByname(name);
+			return MsgResponse.success("success", user);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+	@ApiOperation(value="通过栏目名删除栏目信息")
+	@GetMapping(value="deleteCategoryByName")
+	public MsgResponse deleteCategoryByName(String name) {
+		try {
+			categoryService.deleteByName(name);
+			return MsgResponse.success("删除成功", null);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return MsgResponse.error(e.getMessage());
+		}
+	}
+
 	@ApiOperation(value="查询所有栏目信息")
 	@GetMapping(value="findAllCategory")
 	public MsgResponse findAllCategory() {
@@ -92,15 +115,6 @@ public class CategoryController {
 		List<Category> list = categoryService.queryCategoryByParentId(id);
 		return MsgResponse.success("success", list);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
 

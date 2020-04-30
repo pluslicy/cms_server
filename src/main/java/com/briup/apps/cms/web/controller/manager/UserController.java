@@ -104,27 +104,27 @@ public class UserController {
         }
     }
 
-    @ApiOperation(value = "用户身份证识别", notes = "需传身份证照片url eg  " +
-            "idcard_front: https://ai.bdstatic.com/file/D348C98B677149C8B95909CFA204BA1C   " +
-            "idcard_back: https://ai.bdstatic.com/file/75537E3E7EE8446EBDCB35B5CEDEB9B6")
-    @PostMapping(value = "identificationUser")
-    public MsgResponse identificationUser(String idcard_front, String idcard_back) {
-        try {
-            byte[] front_data = IdentificationUtil.getImageFromURL(idcard_front);
-            byte[] back_data = IdentificationUtil.getImageFromURL(idcard_back);
-
-            String front = IdentificationUtil.idcard("front", front_data);
-            String back = IdentificationUtil.idcard("back", back_data);
-            HashMap map = new HashMap<String, String>();
-            map.putAll(IdentificationUtil.getFrontByJson(front));
-            map.putAll(IdentificationUtil.getBackByJson(back));
-
-            return MsgResponse.success("success", map);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return MsgResponse.error(e.getMessage());
-        }
-    }
+//    @ApiOperation(value = "用户身份证识别", notes = "需传身份证照片url eg  " +
+//            "idcard_front: https://ai.bdstatic.com/file/D348C98B677149C8B95909CFA204BA1C   " +
+//            "idcard_back: https://ai.bdstatic.com/file/75537E3E7EE8446EBDCB35B5CEDEB9B6")
+//    @PostMapping(value = "identificationUser")
+//    public MsgResponse identificationUser(String idcard_front, String idcard_back) {
+//        try {
+//            byte[] front_data = IdentificationUtil.getImageFromURL(idcard_front);
+//            byte[] back_data = IdentificationUtil.getImageFromURL(idcard_back);
+//
+//            String front = IdentificationUtil.idcard("front", front_data);
+//            String back = IdentificationUtil.idcard("back", back_data);
+//            HashMap map = new HashMap<String, String>();
+//            map.putAll(IdentificationUtil.getFrontByJson(front));
+//            map.putAll(IdentificationUtil.getBackByJson(back));
+//
+//            return MsgResponse.success("success", map);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return MsgResponse.error(e.getMessage());
+//        }
+//    }
 
 
 }
